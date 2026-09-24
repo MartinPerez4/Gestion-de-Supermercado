@@ -76,7 +76,7 @@ public class Supermercado {
                 listaProductos.remove(producto);
             }
             else {
-                System.out.println("Introdusca un codigo valido");
+                System.out.println("Introdusca un codigo valido!");
             }
         }
         return listaProductos;
