@@ -123,7 +123,7 @@ public class Aplicacion {
                 case 3:
                     //Actualizar productos disponibles
                     String CodigoProductoAActualizar = JOptionPane.showInputDialog(null, "Lista de productos\n" +
-                            Mp.getListaProductos() + "\n" +
+                            Mp.getListaProductos().toString().replace(", ", "\n").replace("[", "").replace("]", "") + "\n" +
                             "Ingrese el codigo correspondiente al producto que desea modificar: ");
                     Producto productoAActualizar = Mp.buscarProducto(CodigoProductoAActualizar);
                     if (productoAActualizar == null) {
@@ -218,7 +218,7 @@ public class Aplicacion {
                 case 7:
                     //Actualizar cliente registrado
                     String documentoClienteAModificar = JOptionPane.showInputDialog(null, "Lista de clientes\n" +
-                            Mp.getListaClientes() + "\n" +
+                            Mp.getListaClientes().toString().replace(", ", "\n").replace("[", "").replace("]", "") + "\n" +
                             "Ingrese el documento de identidad correspondiente al cliente que desea modificar: ");
                     Cliente clienteAModificar = Mp.buscarCliente(documentoClienteAModificar);
                     if (clienteAModificar == null) {JOptionPane.showMessageDialog(null, "Cliente no encontrado"); break;}
