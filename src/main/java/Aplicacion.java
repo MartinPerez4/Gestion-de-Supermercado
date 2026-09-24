@@ -1,6 +1,6 @@
 public class Aplicacion {
     static void main(){
-        Supermercado Mp = new Supermercado("Marketplus","Direccion no se que", 324439123);
+        Supermercado Mp = new Supermercado("Marketplus","Direccion no se que", "324439123");
         int opcion;
         do{
             //Menu ou shit
