@@ -19,13 +19,13 @@ public class Compras {
 
     @Override
     public String toString() {
-        return "Compras{" +
-                "codigo='" + codigo + '\'' +
-                ", fechaDeRealizacion=" + fechaDeRealizacion +
-                ", valorTotal=" + valorTotal +
-                ", listaDetalles=" + listaDetalles +
-                ", metodoDePago=" + metodoDePago +
-                '}';
+        String texto = codigo + " | " + fechaDeRealizacion
+                + " | Pago: " + metodoDePago
+                + " | Total: $" + valorTotal;
+        for (DetalleCompra detalle : listaDetalles) {
+            texto += "\n    - " + detalle;
+        }
+        return texto;
     }
 
     private MetodoDePago metodoDePago;

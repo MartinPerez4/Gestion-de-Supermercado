@@ -207,6 +207,40 @@ public class Supermercado {
         }
         return existe;
     }
+    //Metodo para actualizar producto
+    public String actualizarCliente(Cliente clienteAModificar, int atributo1, String nuevoValor){
+        switch (atributo1) {
+            case 0:
+                //Volver al menu principal
+                return "Volviendo al menu principal.";
+            case 1:
+                //Modificar nombre
+                if (clienteAModificar.getNombre().equals(nuevoValor)) {
+                    return "Este nombre es el mismo que ya esta";
+                } else {
+                    clienteAModificar.setNombre(nuevoValor);
+                    return "Nombre actualizado correctamente";
+                }
+            case 2:
+                //Modificar telefono
+                if (clienteAModificar.getTelefono().equals(nuevoValor)) {
+                    return "Este telefono es el mismo que ya esta";
+                } else {
+                    clienteAModificar.setTelefono(nuevoValor);
+                    return "Telefono actualizado correctamente";
+                }
+            case 3:
+                //Modificar email
+                if (clienteAModificar.getEmail().equals(nuevoValor)) {
+                    return "Este email es el mismo que ya esta";
+                } else {
+                    clienteAModificar.setEmail(nuevoValor);
+                    return "Email actualizado correctamente";
+                }
+            default:
+                return "El valor de la opcion no es correcta.";
+        }
+    }
     //Metodo agregar cliente
     public boolean agregarCliente(Cliente cliente){
         boolean agregado = false;
@@ -249,12 +283,26 @@ public class Supermercado {
         return existe;
     }
 
+    //Metodo agregar compra
+    public boolean agregarCompra(Compras compra){
+        boolean agregado = false;
+        boolean existe = verificarCompra(compra.getCodigo());
+        if (existe==false){
+            listaCompras.add(compra);
+            agregado = true;
+        }
+        return agregado;
+    }
+
     //Metodo eliminar compra
     public boolean eliminarCompra(Compras compra) {
         boolean eliminado = false;
         boolean existe = verificarCompra(compra.getCodigo());
         if(existe==true) {
             listaCompras.remove(compra);
+            for (Cliente cliente : listaClientes) {
+                cliente.getListaCompras().remove(compra);
+            }
             eliminado = true;
         }
         return eliminado;

@@ -14,13 +14,9 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" +
-                "codigo='" + codigo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", precioUnitario=" + precioUnitario +
-                ", cantidadDisponible=" + cantidadDisponible +
-                ", categoriaProducto=" + categoriaProducto +
-                '}';
+        return nombre + " [" + codigo + "] - $" + precioUnitario
+                + " - Stock: " + cantidadDisponible
+                + " - " + categoriaProducto;
     }
 
     public CategoriaProducto categoriaProducto;
