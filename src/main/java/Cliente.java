@@ -18,6 +18,17 @@ public class Cliente {
         listaCompras = new ArrayList<Compras>();
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nombre='" + nombre + '\'' +
+                ", documentoIdentidad='" + documentoIdentidad + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", listaCompras=" + listaCompras +
+                '}';
+    }
+
     public String getNombre() {
         return nombre;
     }

@@ -80,31 +80,73 @@ public class Aplicacion {
                     String codigoProductoAEliminar = JOptionPane.showInputDialog(null,"Lista de productos\n" +
                             Mp.getListaProductos() + "\n" +
                             "Ingrese el codigo correspondiente al producto que desea eliminar: ");
-                    Producto productoAEliminar = Mp.eliminarProducto(codigoProductoAEliminar);
+                    Producto productoAEliminar = Mp.buscarProducto(codigoProductoAEliminar);
+                    if(productoAEliminar!= null){
+                        if(Mp.eliminarProducto(productoAEliminar)){
+                            JOptionPane.showMessageDialog(null, "Producto eliminado correctamente");
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Producto no eliminado correctamente");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Producto no encontrado");
+                    }
                     break;
                 case 5:
                     //Registrar cliente
-                String nombreCliente = "Maria";
-                String documentoIdentidad = "12";
-                String telefono = "32312";
-                String email = "m@gmail.com";
+                String nombreCliente = JOptionPane.showInputDialog("Introduzca el nombre del cliente");
+                String documentoIdentidad = JOptionPane.showInputDialog("Introduzca el documento del cliente");
+                String telefono = JOptionPane.showInputDialog("Introduzca el telefono del cliente");
+                String email = JOptionPane.showInputDialog("Introduzca el email del cliente");
                 Cliente cli = new Cliente(nombreCliente,documentoIdentidad,telefono,email);
-
+                    if(Mp.agregarCliente(cli)){
+                        JOptionPane.showMessageDialog(null, "Cliente registrado correctamente");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Este cliente ya esta registrado");
+                    }
                     break;
                 case 6:
                     //Mostrar clientes registrados
+                    JOptionPane.showMessageDialog(null, "Los " + Mp.getListaClientes().size() + " clientes que estan registeados son:\n"+Mp.getListaClientes());
                     break;
                 case 7:
                     //Actualizar cliente registrado
                     break;
                 case 8:
-                    //Eliminar cliente
+                    //Eliminar un cliente
+                    String documentoClienteAEliminar = JOptionPane.showInputDialog(null,"Lista de clientes\n" +
+                            Mp.getListaClientes() + "\n" +
+                            "Ingrese el documento de identidad correspondiente al cliente que desea eliminar: ");
+                    Cliente clienteAEliminar = Mp.buscarCliente(documentoClienteAEliminar);
+                    if(clienteAEliminar!= null){
+                        if(Mp.eliminarCliente(clienteAEliminar)){
+                            JOptionPane.showMessageDialog(null, "Cliente eliminado correctamente");
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Cliente no eliminado correctamente");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Cliente no encontrado");
+                    }
                     break;
                 case 9:
                     //Mostrar todas las compras
+                    JOptionPane.showMessageDialog(null, "El historial de compras registradas en el supermercado son: \n" +
+                            Mp.getListaCompras());
                     break;
                 case 10:
                     //Eliminar una compra
+                    String compraCodigoAEliminar = JOptionPane.showInputDialog(null,"Lista de compras\n" +
+                            Mp.getListaCompras() + "\n" +
+                            "Ingrese el codigo correspondiente a la compra que desea eliminar: ");
+                    Compras compraAEliminar= Mp.buscarCompra(compraCodigoAEliminar);
+                    if(compraAEliminar!= null){
+                        if(Mp.eliminarCompra(compraAEliminar)){
+                            JOptionPane.showMessageDialog(null, "Compra eliminada correctamente");
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Compra no eliminada correctamente");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Compra no encontrada");
+                    }
                     break;
                 default:
                     break;

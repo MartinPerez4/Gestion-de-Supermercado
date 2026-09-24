@@ -16,6 +16,18 @@ public class Compras {
 
         listaDetalles = new ArrayList<>();
     }
+
+    @Override
+    public String toString() {
+        return "Compras{" +
+                "codigo='" + codigo + '\'' +
+                ", fechaDeRealizacion=" + fechaDeRealizacion +
+                ", valorTotal=" + valorTotal +
+                ", listaDetalles=" + listaDetalles +
+                ", metodoDePago=" + metodoDePago +
+                '}';
+    }
+
     private MetodoDePago metodoDePago;
 
     public String getCodigo() {
