@@ -72,9 +72,6 @@ public class Supermercado {
         for (Producto producto : listaProductos){
             if(producto.getCodigo() == codigo) {
                 listaProductos.remove(producto);
-            }
-            if(producto.getCodigo() == codigo) {
-                listaProductos.remove(producto);
             } else {
                 System.out.println("Introdusca un codigo valido!");
             }
