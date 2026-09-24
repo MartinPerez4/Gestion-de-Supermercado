@@ -1,14 +1,20 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Compras {
     private String codigo;
     private LocalDate fechaDeRealizacion;
     private double valorTotal;
 
+    private List<DetalleCompra> listaDetalles;
+
     public Compras (String codigo, LocalDate fechaDeRealizacion, double valorTotal){
         this.codigo = codigo;
         this.fechaDeRealizacion = fechaDeRealizacion;
         this.valorTotal = valorTotal;
+
+        listaDetalles = new ArrayList<>();
     }
     private MetodoDePago metodoDePago;
 
@@ -42,5 +48,13 @@ public class Compras {
 
     public void setMetodoDePago(MetodoDePago metodoDePago) {
         this.metodoDePago = metodoDePago;
+    }
+
+    public List<DetalleCompra> getListaDetalles() {
+        return listaDetalles;
+    }
+
+    public void setListaDetalles(List<DetalleCompra> listaDetalles) {
+        this.listaDetalles = listaDetalles;
     }
 }
