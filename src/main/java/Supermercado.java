@@ -57,7 +57,13 @@ public class Supermercado {
     public List<Producto> getListaProductos() {
         return listaProductos;
     }
-
+    public List<String> getListaProductosCodigo() {
+        List<String> listaProductoCodigo = new ArrayList<>();
+        for (Producto p : listaProductos) {
+            listaProductoCodigo.add("nombre: " + p.getNombre() + " / código: " + p.getCodigo());
+        }
+        return listaProductoCodigo;
+    }
     public void setListaProductos(List<Producto> listaProductos) {
         this.listaProductos = listaProductos;
     }

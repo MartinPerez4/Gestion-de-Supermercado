@@ -56,19 +56,51 @@ public class Aplicacion {
                     break;
                 case 1:
                     //Agregar producto
-                    String codigo = JOptionPane.showInputDialog("Introduzca el codigo del producto");
-                    String nombreProducto = JOptionPane.showInputDialog("Introduzca el nombre del producto");
-                    double precioUnitario = Double.parseDouble(JOptionPane.showInputDialog("Introduzca el precio del producto"));
-                    int cantidadDisponible = Integer.parseInt(JOptionPane.showInputDialog("Introduzca el cantidad del producto"));
-                    String cate = JOptionPane.showInputDialog(
-                            "Categoría (ALIMENTO, BEBIDA, ASEO, CUIDADO_PERSONAL):"
-                    );
-                    CategoriaProducto categoria;
-                    try {
-                        categoria = CategoriaProducto.valueOf(cate.trim().toUpperCase());
-                    } catch (Exception e) {
-                        categoria = CategoriaProducto.ALIMENTO;
+                    int codigochecar;
+                    while (true) {
+                        try {
+                            codigochecar = Integer.parseInt(JOptionPane.showInputDialog("Introduzca el código del producto"));
+                            break;
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "Codigo invalido. Intentelo de nuevo.");
+                        }
                     }
+                    //toString para codigo
+                    String codigo = Integer.toString(codigochecar);
+                    String nombreProducto = JOptionPane.showInputDialog("Introduzca el nombre del producto");
+                    //Introducir Precio unitario
+                    double precioUnitario;
+                    while (true) {
+                        try {
+                            precioUnitario = Double.parseDouble(JOptionPane.showInputDialog("Introduzca el precio del producto"));
+                            break;
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "Precio invalido. Intentelo de nuevo.");
+                        }
+                    }
+                    //Introducir Cantidad Disponible
+                    int cantidadDisponible;
+                    while (true) {
+                        try {
+                            cantidadDisponible = Integer.parseInt(JOptionPane.showInputDialog("Introduzca el cantidad del producto"));
+                            break;
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "Cantidad invalida. Intentelo de nuevo.");
+                        }
+                    }
+                    //Introducir categoria
+                    String cate = "";
+                    CategoriaProducto categoria;
+                    while(true) {
+                        try {
+                            cate = JOptionPane.showInputDialog("Introdusca la Categoría:\n- ALIMENTO\n- BEBIDA\n- ASEO\n- CUIDADO_PERSONAL");
+                            categoria = CategoriaProducto.valueOf(cate.trim().toUpperCase());
+                            break;
+                        } catch (IllegalArgumentException e) {
+                            JOptionPane.showMessageDialog(null, "'" + cate + "' no es una categoría válida. Intente de nuevo.");
+                        }
+                    }
+
                     Producto prod = new Producto(codigo, nombreProducto, precioUnitario, cantidadDisponible, categoria);
                     if (Mp.agregarProducto(prod)) {
                         JOptionPane.showMessageDialog(null, "Producto agregado correctamente");
@@ -76,6 +108,7 @@ public class Aplicacion {
                         JOptionPane.showMessageDialog(null, "Producto ya existente");
                     }
                     break;
+
                 case 2:
                     //Mostrar productos disponibles
                     JOptionPane.showMessageDialog(null, "Los " + Mp.getListaProductos().size() + " productos que hay son:\n" + Mp.getListaProductos());
@@ -120,10 +153,11 @@ public class Aplicacion {
                         JOptionPane.showMessageDialog(null, msg);
                     } while (atributo != 0);
                         break;
+
                 case 4:
                     //Eliminar un producto
-                    String codigoProductoAEliminar = JOptionPane.showInputDialog(null, "Lista de productos\n" +
-                            Mp.getListaProductos() + "\n" +
+                    String codigoProductoAEliminar = JOptionPane.showInputDialog(null, "Lista de productos:\n" +
+                            String.join("\n", Mp.getListaProductosCodigo()) + "\n" +
                             "Ingrese el codigo correspondiente al producto que desea eliminar: ");
                     Producto productoAEliminar = Mp.buscarProducto(codigoProductoAEliminar);
                     if (productoAEliminar != null) {
