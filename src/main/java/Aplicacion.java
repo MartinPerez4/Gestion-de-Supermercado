@@ -1,7 +1,9 @@
+import javax.swing.*;
+
 public class Aplicacion {
     static void main(){
         Supermercado Mp = new Supermercado("Marketplus","Direccion no se que", "324439123");
-        int opcion = 0;
+        int opcion;
         do{
             //Menu ou shit
             //
@@ -27,34 +29,58 @@ public class Aplicacion {
             //0. Salir del programa
 
             //Switch case
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null,"\n" +
+                    "Menu administrador/supermercado\n" +
+                    "1. Agregar producto\n" +
+                    "2. Mostrar productos disponibles\n" +
+                    "3. Actualizar productos disponibles\n" +
+                    "4. Eliminar productos\n" +
+                    "\n" +
+                    "5. Registrar clientes\n" +
+                    "6. Mostrar clientes registrados\n" +
+                    "7. Actualizar clientes registrados\n" +
+                    "8. Eliminar clientes\n" +
+                    "\n" +
+                    "9. Mostrar todas las compras\n" +
+                    "10. Eliminar compra\n" +
+                    "\n" +
+                    "Menu cliente\n" +
+                    "11. Realizar compra\n" +
+                    "12. Mostrar historial de compras\n" +
+                    "13. Modificar compra\n" +
+                    "\n" +
+                    "0. Salir del programa"));
             switch(opcion){
                 case 0:
                     //Cerrando programa
                     break;
                 case 1:
                     //Agregar producto
-                String codigo = "1";
-                String nombreProducto = "Arroz";
-                double precioUnitario = 2000;
-                int cantidadDisponible = 10;
+                String codigo = JOptionPane.showInputDialog("Introduzca el codigo del producto");
+                String nombreProducto = JOptionPane.showInputDialog("Introduzca el nombre del producto");
+                double precioUnitario =  Double.parseDouble(JOptionPane.showInputDialog("Introduzca el precio del producto"));
+                int cantidadDisponible =  Integer.parseInt(JOptionPane.showInputDialog("Introduzca el cantidad del producto"));
                 CategoriaProducto categoria = CategoriaProducto.ALIMENTO;
                 Producto prod = new Producto(codigo,nombreProducto,precioUnitario,cantidadDisponible,categoria);
                 if(Mp.agregarProducto(prod)){
-                    System.out.println("Producto agregado correctamente");
+                    JOptionPane.showMessageDialog(null, "Producto agregado correctamente");
                 }else{
-                    System.out.println("Producto ya existente");
+                    JOptionPane.showMessageDialog(null, "Producto ya existente");
                 }
                     break;
                 case 2:
                     //Mostrar productos disponibles
-                    System.out.println("Los " + Mp.getListaProductos().size() + " productos que hay son: ");
-                    System.out.println(Mp.getListaProductos());
+                    JOptionPane.showMessageDialog(null, "Los " + Mp.getListaProductos().size() + " productos que hay son:\n"+Mp.getListaProductos());
                     break;
                 case 3:
                     //Actualizar productos disponibles
                     break;
                 case 4:
                     //Eliminar un producto
+                    String codigoProductoAEliminar = JOptionPane.showInputDialog(null,"Lista de productos\n" +
+                            Mp.getListaProductos() + "\n" +
+                            "Ingrese el codigo correspondiente al producto que desea eliminar: ");
+                    Producto productoAEliminar = Mp.eliminarProducto(codigoProductoAEliminar);
                     break;
                 case 5:
                     //Registrar cliente

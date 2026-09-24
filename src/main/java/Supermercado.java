@@ -68,17 +68,12 @@ public class Supermercado {
         return agregado;
     }
     //Metodo para eliminar producto
-    public List<Producto> eliminarProducto(String codigo) {
-        //mostrar lista de productos temp
-        System.out.println(listaProductos);
+    public Producto eliminarProducto(String codigo) {
         for (Producto producto : listaProductos){
             if(producto.getCodigo() == codigo) {
                 listaProductos.remove(producto);
             }
-            else {
-                System.out.println("Introdusca un codigo valido");
-            }
         }
-        return listaProductos;
+        return null;
     }
 }
