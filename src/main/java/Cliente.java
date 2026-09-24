@@ -1,16 +1,21 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cliente {
     private String nombre;
     private String documentoIdentidad;
     private String telefono;
     private String email;
-    private String comprasRealizadas;
 
-    public Cliente (String nombre, String documentoIdentidad, String telefono, String email, String comprasRealizadas){
+    private List<Compras> listaCompras;
+
+    public Cliente (String nombre, String documentoIdentidad, String telefono, String email){
         this.nombre = nombre;
         this.documentoIdentidad = documentoIdentidad;
         this.telefono = telefono;
         this.email = email;
-        this.comprasRealizadas = comprasRealizadas;
+
+        listaCompras = new ArrayList<Compras>();
     }
 
     public String getNombre() {
@@ -45,11 +50,11 @@ public class Cliente {
         this.email = email;
     }
 
-    public String getComprasRealizadas() {
-        return comprasRealizadas;
+    public List<Compras> getListaCompras() {
+        return listaCompras;
     }
 
-    public void setComprasRealizadas(String comprasRealizadas) {
-        this.comprasRealizadas = comprasRealizadas;
+    public void setListaCompras(List<Compras> listaCompras) {
+        this.listaCompras = listaCompras;
     }
 }
