@@ -117,7 +117,8 @@ public class Aplicacion {
 
                 case 2:
                     //Mostrar productos disponibles
-                    JOptionPane.showMessageDialog(null, "Los " + Mp.getListaProductos().size() + " productos que hay son:\n" + Mp.getListaProductos());
+                    JOptionPane.showMessageDialog(null, "Los " + Mp.getListaProductos().size() + " productos que hay son:\n" +
+                            Mp.getListaProductos().toString().replace(", ", "\n").replace("[", "").replace("]", ""));
                     break;
                 case 3:
                     //Actualizar productos disponibles
