@@ -60,7 +60,15 @@ public class Aplicacion {
                 String nombreProducto = JOptionPane.showInputDialog("Introduzca el nombre del producto");
                 double precioUnitario =  Double.parseDouble(JOptionPane.showInputDialog("Introduzca el precio del producto"));
                 int cantidadDisponible =  Integer.parseInt(JOptionPane.showInputDialog("Introduzca el cantidad del producto"));
-                CategoriaProducto categoria = CategoriaProducto.ALIMENTO;
+                    String cate = JOptionPane.showInputDialog(
+                            "Categoría (ALIMENTO, BEBIDA, ASEO, CUIDADO_PERSONAL):"
+                    );
+                    CategoriaProducto categoria;
+                    try {
+                        categoria = CategoriaProducto.valueOf(cate.trim().toUpperCase());
+                    } catch (Exception e) {
+                        categoria = CategoriaProducto.ALIMENTO;
+                    }
                 Producto prod = new Producto(codigo,nombreProducto,precioUnitario,cantidadDisponible,categoria);
                 if(Mp.agregarProducto(prod)){
                     JOptionPane.showMessageDialog(null, "Producto agregado correctamente");
