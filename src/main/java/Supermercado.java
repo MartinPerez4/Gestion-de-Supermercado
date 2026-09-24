@@ -109,6 +109,78 @@ public class Supermercado {
             }
         return eliminado;
     }
+    //Metodo para actualizar producto
+    public String actualizarProducto(Producto productoAActualizar, int atributo, String nuevoValor){
+            switch (atributo) {
+                case 0:
+                    //Volver al menu principal
+                    return "Volviendo al menu principal.";
+                case 1:
+                    //Modificar codigo
+                    if (productoAActualizar.getCodigo().equals(nuevoValor)) {
+                        return "Este codigo es el mismo que ya esta";
+                    } else if (verificarProducto(nuevoValor)) {
+                        return "Codigo de producto ya existente";
+                    } else {
+                        productoAActualizar.setCodigo(nuevoValor);
+                        return "Producto actualizado correctamente";
+                    }
+                case 2:
+                    //Modificar nombre
+                    if (productoAActualizar.getNombre().equals(nuevoValor)) {
+                        return "Este nombre es el mismo que ya esta";
+                    } else {
+                        productoAActualizar.setNombre(nuevoValor);
+                        return "Producto actualizado correctamente";
+                    }
+                case 3:
+                    //Precio unitario
+                    double nuevoValorDouble = 0;
+                    try {
+                        nuevoValorDouble = Double.parseDouble(nuevoValor);
+                    } catch (NumberFormatException e) {
+                        return "Precio invalido, debe ser un numero";
+                    }
+                    if (productoAActualizar.getPrecioUnitario() == nuevoValorDouble) {
+                        return "Este precio es el mismo que ya esta";
+                    } else {
+                        productoAActualizar.setPrecioUnitario(nuevoValorDouble);
+                        return "Producto actualizado correctamente";
+                    }
+                case 4:
+                    //Cantidad disponible
+                    int nuevoValorEntero = 0;
+                    try {
+                        nuevoValorEntero = Integer.parseInt(nuevoValor);
+                    } catch (NumberFormatException e) {
+                        return "Cantidad invalida, debe ser un numero";
+                    }
+                    if (productoAActualizar.getCantidadDisponible() == nuevoValorEntero) {
+                        return "Esta cantidad es la misma que ya esta";
+                    } else {
+                        productoAActualizar.setCantidadDisponible(nuevoValorEntero);
+                        return "Producto actualizado correctamente";
+                    }
+                case 5:
+                    //Categoria producto
+                    CategoriaProducto categoriaNueva;
+                    try {
+                        categoriaNueva = CategoriaProducto.valueOf(nuevoValor.trim().toUpperCase());
+                    } catch (Exception e) {
+                        categoriaNueva = CategoriaProducto.ALIMENTO;
+                        productoAActualizar.setCategoriaProducto(categoriaNueva);
+                        return "Categoria no encontrada, se le asignara la categoria por defecto";
+                    }
+                    if (productoAActualizar.getCategoriaProducto().equals(categoriaNueva)) {
+                        return "Esta categoria es la misma que ya esta";
+                    } else {
+                        productoAActualizar.setCategoriaProducto(categoriaNueva);
+                        return "Producto actualizado correctamente";
+                    }
+                default:
+                    return "El valor del atributo incorrecto";
+            }
+    }
     //Metodo para buscar producto
     public Producto buscarProducto(String codigo) {
         for (Producto producto : listaProductos){
