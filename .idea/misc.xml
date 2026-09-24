@@ -11,7 +11,7 @@
   <component name="PrintToLogpointModuleInspectionState">
     <option name="disabledModuleNames">
       <set>
-        <option value="Gestion-de-Supermercado" />
+        <option value="Gestion-de-supermercado" />
       </set>
     </option>
   </component>
