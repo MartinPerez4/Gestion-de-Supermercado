@@ -25,6 +25,7 @@ public class Aplicacion {
             //13. Modificar compra
             //
             //0. Salir del programa
+
             //Switch case
             switch(opcion){
                 case 0:
@@ -82,6 +83,6 @@ public class Aplicacion {
                 default:
                     break;
                 }
-        }while(option!=0);
+        }while(opcion!=0);
     }
 }

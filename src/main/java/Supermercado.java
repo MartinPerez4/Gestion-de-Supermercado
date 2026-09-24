@@ -5,14 +5,12 @@ public class Supermercado {
     private String nombreComercial;
     private String direccion;
     private String telefono;
-
     private List<Producto> listaProductos;
 
     public Supermercado (String nombreComercial, String direccion, String telefono){
         this.nombreComercial = nombreComercial;
         this.direccion = direccion;
         this.telefono = telefono;
-
         listaProductos = new ArrayList<Producto>();
     }
 
@@ -68,5 +66,19 @@ public class Supermercado {
             agregado = true;
         }
         return agregado;
+    }
+    //Metodo para eliminar producto
+    public List<Producto> eliminarProducto(String codigo) {
+        //mostrar lista de productos temp
+        System.out.println(listaProductos);
+        for (Producto producto : listaProductos){
+            if(producto.getCodigo() == codigo) {
+                listaProductos.remove(producto);
+            }
+            else {
+                System.out.println("Introdusca un codigo valido");
+            }
+        }
+        return listaProductos;
     }
 }
