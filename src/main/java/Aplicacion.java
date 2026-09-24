@@ -187,9 +187,22 @@ public class Aplicacion {
                     //Registrar cliente
                     String nombreCliente = JOptionPane.showInputDialog("Introduzca el nombre del cliente");
                     String documentoIdentidad = JOptionPane.showInputDialog("Introduzca el documento del cliente");
-                    String telefono = JOptionPane.showInputDialog("Introduzca el telefono del cliente");
+
+                    String telefono;
+                    while (true) {
+                        telefono = JOptionPane.showInputDialog("Introduzca el telefono del cliente");
+                        if (telefono == null) break;
+                        try {
+                            Integer.parseInt(telefono);
+                            break;
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "Ingrese un numero de telefono valido.");
+                        }
+                    }
+
                     String email = JOptionPane.showInputDialog("Introduzca el email del cliente");
                     Cliente cli = new Cliente(nombreCliente, documentoIdentidad, telefono, email);
+
                     if (Mp.agregarCliente(cli)) {
                         JOptionPane.showMessageDialog(null, "Cliente registrado correctamente");
                     } else {
@@ -198,7 +211,8 @@ public class Aplicacion {
                     break;
                 case 6:
                     //Mostrar clientes registrados
-                    JOptionPane.showMessageDialog(null, "Los " + Mp.getListaClientes().size() + " clientes que estan registrados son:\n" + Mp.getListaClientes());
+                    JOptionPane.showMessageDialog(null, "Los " + Mp.getListaClientes().size() + " clientes que estan registrados son:\n" +
+                            Mp.getListaClientes().toString().replace(", ", "\n").replace("[", "").replace("]", ""));
                     break;
                 case 7:
                     //Actualizar cliente registrado
@@ -258,7 +272,7 @@ public class Aplicacion {
                 case 9:
                     //Mostrar todas las compras
                     JOptionPane.showMessageDialog(null, "El historial de compras registradas en el supermercado son: \n" +
-                            Mp.getListaCompras());
+                            Mp.getListaCompras().toString().replace(", ", "\n").replace("[", "").replace("]", ""));
                     break;
                 case 10:
                     //Eliminar una compra
@@ -277,6 +291,7 @@ public class Aplicacion {
                     }
                     break;
                 case 11:
+                    //Realiza una compra
                     String documentoComprador =  JOptionPane.showInputDialog("Introduzca su documento de identidad para realizar la compra: ");
                     if (documentoComprador == null) break;
                     Cliente comprador = Mp.buscarCliente(documentoComprador);
@@ -341,15 +356,17 @@ public class Aplicacion {
                     "Valor total de la compra: " + valorTotal );
                     break;
                 case 12:
+                    //Mostrar historial de compras
                     String documentoCliente =  JOptionPane.showInputDialog("Introduzca su documento de identidad para mostrar el historial de compras: ");
                     if (documentoCliente == null) break;
                     Cliente cliente = Mp.buscarCliente(documentoCliente);
                     if (cliente == null) { JOptionPane.showMessageDialog(null, "Cliente no encontrado"); ; break;
                     }
                     JOptionPane.showMessageDialog(null,"Este es el historial de compras de el cliente " + cliente.getNombre() + ":\n" +
-                            cliente.getListaCompras());
+                            cliente.getListaCompras().toString().replace(", ", "\n").replace("[", "").replace("]", ""));
                     break;
                 case 13:
+                    //Modificar compra
                     String documentoClienteAModificarCompra =  JOptionPane.showInputDialog("Introduzca su documento de identidad para modificar una de sus compras: ");
                     if (documentoClienteAModificarCompra == null) break;
                     Cliente clienteAModificarCompra = Mp.buscarCliente(documentoClienteAModificarCompra);
