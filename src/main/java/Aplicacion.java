@@ -257,7 +257,7 @@ public class Aplicacion {
                 case 8:
                     //Eliminar un cliente
                     String documentoClienteAEliminar = JOptionPane.showInputDialog(null, "Lista de clientes\n" +
-                            Mp.getListaClientes() + "\n" +
+                            Mp.getListaClientes().toString().replace(", ", "\n").replace("[", "").replace("]", "") + "\n" +
                             "Ingrese el documento de identidad correspondiente al cliente que desea eliminar: ");
                     Cliente clienteAEliminar = Mp.buscarCliente(documentoClienteAEliminar);
                     if (clienteAEliminar != null) {
@@ -278,7 +278,7 @@ public class Aplicacion {
                 case 10:
                     //Eliminar una compra
                     String compraCodigoAEliminar = JOptionPane.showInputDialog(null, "Lista de compras\n" +
-                            Mp.getListaCompras() + "\n" +
+                            Mp.getListaCompras().toString().replace(", ", "\n").replace("[", "").replace("]", "") + "\n" +
                             "Ingrese el codigo correspondiente a la compra que desea eliminar: ");
                     Compras compraAEliminar = Mp.buscarCompra(compraCodigoAEliminar);
                     if (compraAEliminar != null) {
@@ -305,9 +305,9 @@ public class Aplicacion {
                     String codigoProducto = "1";
                     do {
                         codigoProducto = JOptionPane.showInputDialog("Catalogo de productos disponibles en nuestro supermercado:\n" +
-                                "Continue sin ingresar nada para continuar.\n" +
-                                Mp.getListaProductos() + "\n" +
-                                "Introduza el codigo correspondiente al producto que quiere: \n");
+                                Mp.getListaProductos().toString().replace(", ", "\n").replace("[", "").replace("]", "") + "\n" +
+                                "Introduza el codigo correspondiente al producto que quiere: \n")+
+                                "o Presione ENTER con el campo VACIO para proceder.\n" ;
                         if (codigoProducto == null || codigoProducto.equals("".trim())) {
                             break;
                         }
@@ -336,7 +336,7 @@ public class Aplicacion {
                         JOptionPane.showMessageDialog(null,"Compra vacia, ha sido cancelada.");
                         break;
                     }
-                    String metodo = JOptionPane.showInputDialog("Introduzca el metodo de pago (Tarjeta, transferencia, o efectivo): ");
+                    String metodo = JOptionPane.showInputDialog("Introduzca el metodo de pago:\n- Tarjeta\n- Transferencia\n- Efectivo");
                     MetodoDePago metodoDePago = null;
                     try {
                         metodoDePago = MetodoDePago.valueOf(metodo.trim().toUpperCase());
@@ -394,7 +394,7 @@ public class Aplicacion {
 
                         switch (atributo1) {
                             case 1:
-                                String nuevoMetodoDePago = JOptionPane.showInputDialog("Introduzca el nuevo metodo de pago: (Tarjeta, efectivo o transferencia.)");
+                                String nuevoMetodoDePago = JOptionPane.showInputDialog("Introduzca el nuevo metodo de pago:\n- Tarjeta\n- Efectivo\n- Transferencia");
                                 MetodoDePago nuevoMetodo =  MetodoDePago.valueOf(nuevoMetodoDePago.trim().toUpperCase());
                                 compraAModificar.setMetodoDePago(nuevoMetodo);
                                 break;
